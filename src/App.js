@@ -1,25 +1,68 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import SevenDayForecast from './components/sevenDayForecast';
 
-function App() {
+const App = () => {
+  const [location, setLocation] = useState('');
+  const [weatherData, setWeatherData] = useState(null);
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const handleGetWeather = async () => {
+    try {
+     
+
+      
+      const apiUrl = `https://api.tomorrow.io/v4/weather/forecast?location=${location}&apikey=${process.env.REACT_APP_API_KEY}`;
+      //https://api.tomorrow.io/v4/weather/forecast?location=42.3478,-71.0466&apikey=ycfuYvyGRdSxtw0wLHBcM7APcytH7mkD'
+
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      // Assuming you want to store the weather data in state
+      setWeatherData(data);
+
+      // Handle the weather data as needed
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Weather App</h1>
+      <form>
+        <label>
+          Location:
+          <input
+            type="text"
+            value={location}
+            onChange={handleLocationChange}
+            placeholder="Enter location"
+          />
+        </label>
+        <button type="button" onClick={handleGetWeather}>
+          Get Weather
+        </button>
+      </form>
+      {weatherData && (
+        <div>
+          <h2>Weather Data:</h2>
+          <pre>Current Temperature: {JSON.stringify(weatherData.timelines.minutely[0].values.temperature)} C </pre>
+          <pre>Morning Temperature: {JSON.stringify(weatherData.timelines.hourly[6].values.temperature)} C </pre>
+          <pre>Afternoon Temperature: {JSON.stringify(weatherData.timelines.hourly[11].values.temperature)} C </pre>
+          <pre>Evening Temperature: {JSON.stringify(weatherData.timelines.hourly[18].values.temperature)} C </pre>
+          <pre>Night Temperature: {JSON.stringify(weatherData.timelines.hourly[25].values.temperature)} C </pre>
+
+          <SevenDayForecast weatherData={weatherData}/>
+
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;
