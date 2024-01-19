@@ -1,15 +1,29 @@
+import { useEffect, useState } from "react";
 
-const SevenDayForecast = (props) =>{
+const weekdays = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+]
+const SevenDayForecast = (props) => {
+                
+    const [weekday, setWeekDay] = useState(null);
 
-        return (
-            <>
-            <p>Today: High {JSON.stringify(props.weatherData.timelines.daily[0].values.temperatureMax)}</p>
-            <p>Today: Low {JSON.stringify(props.weatherData.timelines.daily[0].values.temperatureMin)}</p>
-            <p>Tomorrow: High {JSON.stringify(props.weatherData.timelines.daily[1].values.temperatureMax)}</p>
-            <p>Tomorrow: Low {JSON.stringify(props.weatherData.timelines.daily[1].values.temperatureMin)}</p>
-            </>
-        )
+    useEffect (() => {
+        const d = new Date(props.dayOfWeek);
+        setWeekDay(weekdays[d.getDay()])
+    })
 
+    return (
+        <div>
+            <p>{weekday}</p>
+            <p>{props.max} C</p>
+        </div>
+    )            
 }
 
 export default SevenDayForecast;

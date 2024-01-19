@@ -15,7 +15,7 @@ const App = () => {
      
 
       
-      const apiUrl = `https://api.tomorrow.io/v4/weather/forecast?location=${location}&apikey=${process.env.REACT_APP_API_KEY}`;
+      const apiUrl = `https://api.tomorrow.io/v4/weather/forecast?location=${location}&apikey=ycfuYvyGRdSxtw0wLHBcM7APcytH7mkD`;
       //https://api.tomorrow.io/v4/weather/forecast?location=42.3478,-71.0466&apikey=ycfuYvyGRdSxtw0wLHBcM7APcytH7mkD'
 
       const response = await fetch(apiUrl);
@@ -30,6 +30,7 @@ const App = () => {
       console.error('Error fetching weather data:', error);
     }
   };
+
 
   return (
     <div className="App">
@@ -52,13 +53,10 @@ const App = () => {
         <div>
           <h2>Weather Data:</h2>
           <pre>Current Temperature: {JSON.stringify(weatherData.timelines.minutely[0].values.temperature)} C </pre>
-          <pre>Morning Temperature: {JSON.stringify(weatherData.timelines.hourly[6].values.temperature)} C </pre>
-          <pre>Afternoon Temperature: {JSON.stringify(weatherData.timelines.hourly[11].values.temperature)} C </pre>
-          <pre>Evening Temperature: {JSON.stringify(weatherData.timelines.hourly[18].values.temperature)} C </pre>
-          <pre>Night Temperature: {JSON.stringify(weatherData.timelines.hourly[25].values.temperature)} C </pre>
-
-          <SevenDayForecast weatherData={weatherData}/>
-
+          
+          <div className='weekly'>
+            { weatherData.timelines.daily.map((day)=> <SevenDayForecast dayOfWeek={day.time} max={day.values.temperatureMax}/>)}
+          </ div>
         </div>
       )}
     </div>
