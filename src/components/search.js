@@ -6,7 +6,7 @@ import { GEO_API_URL, geoDataOptions } from '../api';
 const Search = ({onSearchChange}) => {
 
     const [search, setSearch] = useState(null);
-   
+    
     
         async function loadOptions(inputValue) {
             try {
@@ -17,8 +17,8 @@ const Search = ({onSearchChange}) => {
                         'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
                     }
                 };
-                const response = await fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${inputValue}`, options);
-                const responseJSON = await response.text();
+                const response = await fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?minPopulation=${50000}&namePrefix=${inputValue}`, options);
+                const responseJSON = await response.json();
                 
                 return { options: responseJSON.data.map ((city) => {
                     return {
@@ -36,10 +36,13 @@ const Search = ({onSearchChange}) => {
         await onSearchChange(searchData)
     }
     return (
-        <form>
-             
-        </form>
-       
+        <AsyncPaginate
+            placeholder='Search for a city'
+            debounceTimeout={600}
+            value={search}
+            onChange={handleOnChange}
+            loadOptions={loadOptions} 
+        />
 
     )
 }
