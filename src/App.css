@@ -3,6 +3,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: url('../public/freenaturestock-1320.jpeg');
+  height: 1600px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; 
+  
+  
+
+
 }
 
 .App-logo {
@@ -30,15 +39,70 @@
 .App-link {
   color: #61dafb;
 }
-
-.weekly {
+.weekly-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  width: 75vw;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 20px;
+}
+.weekly-wrap:before {
   width: 75vw;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  opacity: .5;
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background-color: rgb(35, 106, 229);
+  background-position: 50% 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+.weekly-content {
+  position: relative;
+  text-shadow: 3px;
+  font-size: 1.35em;
+}
+.weekday {
+  border-style: solid;
+  border-width: 1px;
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.today-wrap {
+  position: relative;
+}
+.today {
+  border-style: solid;
+  border-width: 1px;
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
 }
 .search-container {
   width: 30vw;
   margin: 20 auto;
+}
+
+
+
+
+.demo-wrap:before {
+  
 }

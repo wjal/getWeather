@@ -19,9 +19,10 @@ const SevenDayForecast = (props) => {
     })
 
     return (
-        <div>
+        <div className="weekly-content">
             <p>{weekday}</p>
-            <p>{props.max} C</p>
+            <p>High: {Math.round(props.max)} C</p>
+            <p>Low: {Math.round(props.min)} C</p>
         </div>
     )            
 }

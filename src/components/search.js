@@ -22,7 +22,7 @@ const Search = ({onSearchChange}) => {
                 
                 return { options: responseJSON.data.map ((city) => {
                     return {
-                        value: `${city.latitude} ${city.longitude}`,
+                        value: `${city.latitude},${city.longitude},${city.name},${city.country}`,
                         label: `${city.name}, ${city.countryCode}`
                     }
                 })}
@@ -33,8 +33,9 @@ const Search = ({onSearchChange}) => {
 
     const handleOnChange = async (searchData) => {
         await setSearch(searchData);
-        await onSearchChange(searchData)
+        await onSearchChange(searchData);
     }
+
     return (
         <AsyncPaginate
             placeholder='Search for a city'

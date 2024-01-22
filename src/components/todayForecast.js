@@ -16,7 +16,7 @@ const TodayForecast = (props) => {
         const d = new Date(props.timeOfDay);
         const hour = d.getHours();
         switch(true) {
-            case(hour > 3 && hour < 12):
+            case(hour >= 3 && hour < 12):
                 setTime(periods[0]);
                 break;
             case(hour >= 12 && hour < 17):
@@ -34,9 +34,9 @@ const TodayForecast = (props) => {
     })
 
     return (
-        <div>
+        <div className="weekly-content">
             <p>{time}</p>
-            <p>{props.max} C</p>
+            <p>{Math.round(props.max)} C</p>
         </div>
     )            
 }
