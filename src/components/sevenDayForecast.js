@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { weatherCodeDay } from "../weatherCodes";
 
 const weekdays = [
     'Sunday',
@@ -13,14 +14,33 @@ const SevenDayForecast = (props) => {
                 
     const [weekday, setWeekDay] = useState(null);
 
+
+    
+
     useEffect (() => {
-        const d = new Date(props.dayOfWeek);
-        setWeekDay(weekdays[d.getDay()])
-    })
+
+        console.log(props.time)
+        const timeTemp = new Date(props.time).toLocaleString("en-US", {timeZone: props.timeZone})
+        console.log(timeTemp)
+        const timeStamp = Date.parse(timeTemp)
+        const time = new Date(timeStamp)
+        
+        console.log(`Day: `, time
+        )
+        setWeekDay(weekdays[time.getDay()])
+
+        const check1 = weatherCodeDay[`${props.weatherCodeMax}` + '0'][1];
+        console.log(`hwewewe`, check1)
+    },[])
 
     return (
         <div className="weekly-content">
             <p>{weekday}</p>
+            <img 
+                src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.weatherCodeMax}0_${weatherCodeDay[props.weatherCodeMax + '0'][1]}_large.png?raw=true`} 
+                alt="nope" 
+                //onError={handleImageError}
+            />
             <p>High: {Math.round(props.max)} C</p>
             <p>Low: {Math.round(props.min)} C</p>
         </div>

@@ -34,12 +34,8 @@ try {
   const currentDate = new Date().toLocaleString("en-US", {timeZone: timeZoneTemp})
   const stamp = Date.parse(currentDate)
   
-  //const check = new Date(stamp).toDateString()
-  //const check2 = new Date(stamp).toTimeString()
-  console.log('set location time', stamp);
   setLocationTime(stamp)
  
-
   console.log(`Current time in ${timeZone}: ${currentDate}`);
 	
 } catch (error) {
@@ -83,13 +79,15 @@ try {
       <div className='weekly-wrap'>
             {weatherData && <CurrentWeather  code={weatherData.timelines.minutely[0].values.weatherCode} max={weatherData.timelines.minutely[0].values.temperature} currentTime={locationTime} sunrise={weatherData.timelines.daily[0].values.sunriseTime} sunset={weatherData.timelines.daily[0].values.sunsetTime} latitude={lon} longitude={lat} timeZone={timeZone}/>}
       </div>
-      <h3>Today</h3>
+      
       <div className='weekly-wrap'>
-            {weatherData && weatherData.timelines.hourly.map((hour, i) => (i == 0 || i == 3 || i == 9 || i == 15) ? <TodayForecast timeOfDay={hour.time} max={hour.values.temperature}/> : '')}
+       
+            {weatherData && weatherData.timelines.hourly.map((hour, i) => (i == 0 || i == 7 || i == 13 || i == 19) ? <TodayForecast timeOfDay={hour.time} max={hour.values.temperature} timeZone={timeZone}/> : '')}
       </div>
-      <h3>This week</h3>
+      
       <div className='weekly-wrap'>
-            {weatherData && weatherData.timelines.daily.map(day => <SevenDayForecast dayOfWeek={day.time} max={day.values.temperatureMax} min={day.values.temperatureMin}/>)}
+      
+            {weatherData && weatherData.timelines.daily.map(day => <SevenDayForecast time={day.time} max={day.values.temperatureMax} min={day.values.temperatureMin} timeZone={timeZone} weatherCodeMax={day.values.weatherCodeMax}/>)}
       </div>
     </div>
   );

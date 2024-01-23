@@ -13,19 +13,24 @@ const TodayForecast = (props) => {
     
 
     useEffect (() => {
-        const d = new Date(props.timeOfDay);
-        const hour = d.getHours();
+        
+        const timeTemp = new Date(props.timeOfDay).toLocaleString("en-US", {timeZone: props.timeZone})
+        const timeStamp = Date.parse(timeTemp)
+        const timeOfDay = new Date(timeStamp)
+
+        
+
         switch(true) {
-            case(hour >= 3 && hour < 12):
+            case(timeOfDay.getHours() >= 4 && timeOfDay.getHours() < 12):
                 setTime(periods[0]);
                 break;
-            case(hour >= 12 && hour < 17):
+            case(timeOfDay.getHours() >= 12 && timeOfDay.getHours() < 17):
                 setTime(periods[1]);                
                 break;
-            case(hour >= 17 && hour < 21):
+            case(timeOfDay.getHours() >= 17 && timeOfDay.getHours() < 21):
                 setTime(periods[2]);                
                 break;
-            case(hour >= 21 || hour < 3):
+            case(timeOfDay.getHours() >= 21 || timeOfDay.getHours() <= 3):
                 setTime(periods[3])
                 break;
             default:
