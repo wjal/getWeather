@@ -13,24 +13,24 @@ const weekdays = [
 const SevenDayForecast = (props) => {
                 
     const [weekday, setWeekDay] = useState(null);
-
+    const [weather, setWeather] = useState('')
 
     
 
     useEffect (() => {
 
-        console.log(props.time)
+        //console.log(props.time)
         const timeTemp = new Date(props.time).toLocaleString("en-US", {timeZone: props.timeZone})
-        console.log(timeTemp)
+        console.log('Time', timeTemp)
         const timeStamp = Date.parse(timeTemp)
         const time = new Date(timeStamp)
         
-        console.log(`Day: `, time
-        )
+        //console.log(`Day: `, time
+        //)
         setWeekDay(weekdays[time.getDay()])
 
         const check1 = weatherCodeDay[`${props.weatherCodeMax}` + '0'][1];
-        console.log(`hwewewe`, check1)
+        setWeather(check1);
     },[])
 
     return (
@@ -41,6 +41,7 @@ const SevenDayForecast = (props) => {
                 alt="nope" 
                 //onError={handleImageError}
             />
+            <p>{weather}</p>
             <p>High: {Math.round(props.max)} C</p>
             <p>Low: {Math.round(props.min)} C</p>
         </div>

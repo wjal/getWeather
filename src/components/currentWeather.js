@@ -12,12 +12,10 @@ const CurrentWeather = (props) => {
     const sunsetStamp = Date.parse(sunsetTemp)
     const sunset = new Date(sunsetStamp)
     const sunsetText = `${sunset.getHours()}:${sunset.getMinutes() >= 10 ? sunset.getMinutes() : '0' + sunset.getMinutes()}`;
-    //const sunsetText = `${sunsetStamp.getHours()}:${sunsetStamp.getMinutes()}`;
 
     const sunriseTemp = new Date(props.sunrise).toLocaleString("en-US", {timeZone: props.timeZone})
     const sunriseStamp = Date.parse(sunriseTemp)
     const sunrise = new Date(sunriseStamp)
-    
     const sunriseText = `${sunrise.getHours()}:${sunrise.getMinutes() >= 10 ? sunrise.getMinutes(): '0' + sunrise.getMinutes()}`;    
 
     const currentTimeStamp = new Date(props.currentTime);
@@ -25,8 +23,9 @@ const CurrentWeather = (props) => {
     
     const dayOrNight = (currentTimeStamp > sunriseStamp && currentTimeStamp < sunsetStamp) ? '0' : '1';
 
-    console.log((currentTimeStamp > sunriseStamp && currentTimeStamp < sunsetStamp) ? 'day' : 'night')
     const check1 = dayOrNight === '0' ? weatherCodeDay[`${props.code}` + '0'][1] : weatherCodeNight[`${props.code}` + '1'][1];
+    const check2 = weatherCode[`${props.code}`][1];
+    const conditions  = dayOrNight === '0' ? weatherCodeDay[`${props.code}` + '0'][0] : weatherCodeNight[`${props.code}` + '1'][0];
 
  
     const handleImageError = () => {
@@ -35,32 +34,34 @@ const CurrentWeather = (props) => {
    
        
     useEffect (() => {
-        const letsSee = async () => {
-        console.log(`here`)
-        }
-        letsSee();
+       
     },[])
 
     return (
-        <div className="weekly-content">
-            <p>Current Weather</p>            
-             { imageLoaded ? 
-                            <img 
-                                src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}${dayOrNight}_${check1}_large.png?raw=true`} 
-                                alt="nope" 
-                                onError={handleImageError}
-                            /> 
-                                : 
-                            <img 
-                                src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}${dayOrNight}_${weatherCodeDay[`${props.code}` + '0'][1]}_large.png?raw=true`} 
-                                alt="nope" 
-                            /> 
-            }
-            <p>Time: {currentTimeText}</p>  
-            <p>Sunrise: {sunriseText}</p>  
-            <p>Sunset: {sunsetText}</p>  
-        </div>
-    )            
+        
+                
+        <div className="daily-content">
+            <div className="flex-row big-icon-container">
+            <h2>{Math.round(props.temperature)}</h2>
+                    { imageLoaded ? 
+                        <img 
+                            src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}${dayOrNight}_${check1}_large.png?raw=true`} 
+                            alt={check1} 
+                            onError={handleImageError}
+                        /> 
+                        : 
+                        <img 
+                            src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}0_${check2}_large.png?raw=true`} 
+                            alt="nope" 
+                        /> 
+                    }
+                    </div>
+           <p>{conditions}</p>
+            
+        </ div> 
+    )
+                 
+
 }
 
 export default CurrentWeather;
