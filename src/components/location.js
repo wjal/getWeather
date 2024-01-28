@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import LocationDetail from "./locationDetail";
+import LocationTime from "./locationTime";
+import Detail from "./detail";
+
 
 const Location = (props) => {
                 
@@ -16,7 +20,7 @@ const Location = (props) => {
         const sunsetTemp = new Date(props.sunset).toLocaleString("en-US", {timeZone: props.timeZone})
         const sunsetStamp = Date.parse(sunsetTemp)
         const sunsetDate = new Date(sunsetStamp)
-        const sunsetText = `${sunsetDate.getHours()}:${sunsetDate.getMinutes() >= 10 ? sunsetDate.getMinutes() : '0' + sunsetDate.getMinutes()}`;
+        const sunsetText = `${sunsetDate.getHours() % 12}:${sunsetDate.getMinutes() >= 10 ? sunsetDate.getMinutes() : '0' + sunsetDate.getMinutes()}` + ` ${sunsetDate.getHours() > 11 ? 'PM' : 'AM'}`;
         setSunset(sunsetText);
     }
 
@@ -24,7 +28,7 @@ const Location = (props) => {
         const sunriseTemp = new Date(props.sunrise).toLocaleString("en-US", {timeZone: props.timeZone})
         const sunriseStamp = Date.parse(sunriseTemp)
         const sunriseDate = new Date(sunriseStamp)
-        const sunriseText = `${sunriseDate.getHours()}:${sunriseDate.getMinutes() >= 10 ? sunriseDate.getMinutes() : '0' + sunriseDate.getMinutes()}`;
+        const sunriseText = `${sunriseDate.getHours()}:${sunriseDate.getMinutes() >= 10 ? sunriseDate.getMinutes() : '0' + sunriseDate.getMinutes()}` + ` ${sunriseDate.getHours() > 11 ? 'PM' : 'AM'}`;;
         setSunrise(sunriseText);
     }
     
@@ -33,6 +37,8 @@ const Location = (props) => {
         const currentTimeText = `${currentTimeStamp.getHours() % 12 === 0 ? 12 : currentTimeStamp.getHours() % 12}:${currentTimeStamp.getMinutes() >= 10 ? currentTimeStamp.getMinutes() : '0' + currentTimeStamp.getMinutes()} ` + ` ${currentTimeStamp.getHours() > 11 ? 'PM' : 'AM'}`;
         setCurrentTime(currentTimeText);
     }
+
+    
 
     useEffect(()=>{
         handleCurrentTime();
@@ -49,32 +55,32 @@ const Location = (props) => {
     return (
     
         <div className="daily-content location-container" >
-            
-            <div class="time flex-row location">
-                <p>Current Time: {currentTime}</p>
-                <p>Timezone: {timeZone}</p>
-            </div>
-            <div class="time flex-row location">       
-                <div>
-                    <p>{ sunrise } am</p>
-                    <p>Sunrise</p>
-                </div>                         
-                <div>
-                    <p>{ sunset } pm</p>
-                    <p>Sunset</p>
-
-                </div> 
-            </div>
-            <div class="time flex-row location">                 
-                <div>
-                    <p>{Math.round(latitude * 100) / 100}</p>
-                    <p>Latitude</p>
-                </div>                       
-                <div>
-                    <p>{ Math.round(longitude * 100) / 100}</p>
-                    <p>Longitude</p>
+            {
+            /*<div class="flex-row location">
+                <div className="location-detail flex-row">
+                    <LocationTime title="Local Time" icon="detailIcons/on-time.png" detail={currentTime} />
                 </div>
-            </div>
+            </div>*/
+}
+           { //<div class="flex-row location">   
+           }    
+           <div className="location-row-today">
+                    <Detail title="Sunrise" icon="detailIcons/sunrise.png" detail={sunrise} />
+                    <Detail title="Sunset" icon="detailIcons/sunset-.png" detail={sunset} />
+                </div>  
+                <div className="location-row-today">
+                    <Detail title="Longitude" icon="detailIcons/longitude.png" detail={longitude} />
+                    <Detail title="Latitude" icon="detailIcons/latitude.png" detail={latitude} />
+                </div>                        
+                { //   </div>
+           } 
+            {/*<div class="flex-row location"> 
+                <div className="location-detail flex-row">
+                    <LocationDetail title="Latitude" detail={Math.round(latitude * 100) / 100}/>
+                    <LocationDetail title="Longitude" detail={ Math.round(longitude * 100) / 100}/>
+                </div>                
+            </div>*/
+            }
         </div>
     
     )            

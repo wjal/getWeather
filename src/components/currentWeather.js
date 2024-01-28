@@ -40,23 +40,25 @@ const CurrentWeather = (props) => {
     return (
         
                 
-        <div className="daily-content">
+        <div className="daily-content wide">
             <div className="flex-row big-icon-container">
-            <h2>{Math.round(props.temperature)}</h2>
+            <div className="flex-row temperature"><h2>{Math.round(props.temperature)}</h2><div className="flex-column"><span className="degrees">°C</span><span></span></div></div>
                     { imageLoaded ? 
                         <img 
-                            src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}${dayOrNight}_${check1}_large.png?raw=true`} 
+                            src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}${dayOrNight}_${check1}_large@2x.png?raw=true`} 
                             alt={check1} 
                             onError={handleImageError}
                         /> 
                         : 
                         <img 
-                            src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}0_${check2}_large.png?raw=true`} 
+                            src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}0_${check2}_large@2x.png?raw=true`} 
                             alt="nope" 
                         /> 
                     }
+                    </div >
+                    <div className="conditions">
+                    <p >{conditions}</p>
                     </div>
-           <p>{conditions}</p>
             
         </ div> 
     )

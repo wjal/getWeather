@@ -7,6 +7,9 @@ import Search from './components/search.js';
 import Detail from './components/detail.js';
 import CurrentWeather from './components/currentWeather.js';
 import { timeZoneOptions, TIME_ZONE_URL } from './api.js';
+import Slider from 'react-slick';
+//import 'slick-carousel/slick/slick.css';
+//import 'slick-carousel/slick/slick-theme.css';
 
 const App = () => {
   const [location, setLocation] = useState('');
@@ -19,6 +22,7 @@ const App = () => {
   const [country, setCountry] = useState('')
   const [countryCode, setCountryCode] = useState('');
   const [timeZone, setTimeZone] = useState();
+
 
 
   const handleLocationChange = (event) => {
@@ -86,8 +90,6 @@ try {
 
                                  
                                   <h2 className="title daily-content">{name}, {country}</h2>
-                                  
-                                  <div className='wide'>
                                     <CurrentWeather  
                                       code={weatherData.timelines.minutely[0].values.weatherCode} 
                                       max={weatherData.timelines.minutely[0].values.temperature} 
@@ -100,7 +102,6 @@ try {
                                       temperature={weatherData.timelines.minutely[0].values.temperature}
                                     />
               
-                                  </div>
                                   
                   </>
                 }
@@ -125,20 +126,50 @@ try {
                 }
             </div>
             </div>
-            <div className="bottom-row-today">
+            
+      
+              { weatherData &&             <div className="bottom-row-today">
+              <Detail detail={weatherData.timelines.minutely[0].values.precipitationProbability} title="Precipitation" character="%" icon="detailIcons/precipitation.png"/>
+              <div class="bar"></div>
+              <Detail detail={weatherData.timelines.minutely[0].values.humidity} title="Humidity" character="%" icon="detailIcons/humidity.png"/>
+              <div class="bar"></div>
+              <Detail detail={(weatherData.timelines.minutely[0].values.pressureSurfaceLevel / 10).toFixed(2)} title="Pressure" character="kPa" icon="detailIcons/barometer.png"/>
+              <div class="bar"></div>
+              <Detail detail={(weatherData.timelines.minutely[0].values.cloudCeiling * 1600).toFixed(0)} title="Ceiling" character="m" icon="detailIcons/ceiling.png"/>
+              <div class="bar"></div>
+              <Detail detail={weatherData.timelines.minutely[0].values.cloudCover} title="Cloud Cover" character="%" icon="detailIcons/cloudy-day.png"/>
+              <div class="bar"></div>
+              <Detail detail={weatherData.timelines.minutely[0].values.windSpeed} title='Wind Speed' character="km/h" icon="detailIcons/wind.png"/>
+              
+              </div>}
+        
+      </div>
+      {/*<div className='detail-wrap'>
+      
               { weatherData &&             <div className="bottom-row-today">
 
-              <Detail detail={weatherData.timelines.minutely[0].values.precipitationProbability} title="Precipitation %"/>
-              <Detail detail={weatherData.timelines.minutely[0].values.humidity} title="humidity"/>
-              <Detail detail={weatherData.timelines.minutely[0].values.pressureSurfaceLevel} title="pressure"/>
-              <Detail detail={weatherData.timelines.minutely[0].values.cloudCeiling} title="ceiling"/>
-              <Detail detail={weatherData.timelines.minutely[0].values.cloudCover} title="cloud cover"/>
-              <Detail detail={weatherData.timelines.minutely[0].values.windSpeed} title='wind speed'/>
+              <Detail detail={weatherData.timelines.minutely[0].values.precipitationProbability} title="Precipitation" character="%" icon="detailIcons/precipitation.png"/>
+              <div class="bar"></div>
+              <Detail detail={weatherData.timelines.minutely[0].values.humidity} title="Humidity" character="%" icon="detailIcons/humidity.png"/>
+              <div class="bar"></div>
+              <Detail detail={(weatherData.timelines.minutely[0].values.pressureSurfaceLevel / 10).toFixed(2)} title="Pressure" character="kPa" icon="detailIcons/barometer.png"/>
+              <div class="bar"></div>
+              <Detail detail={weatherData.timelines.minutely[0].values.cloudCeiling * 1600} title="Ceiling" character="m" icon="detailIcons/ceiling.png"/>
+              <div class="bar"></div>
+              <Detail detail={weatherData.timelines.minutely[0].values.cloudCover} title="Cloud Cover" character="%" icon="detailIcons/cloudy-day.png"/>
+              <div class="bar"></div>
+              <Detail detail={weatherData.timelines.minutely[0].values.windSpeed} title='Wind Speed' character="km/h" icon="detailIcons/wind.png"/>
               </div>}
-            </div>
-      </div>
+        </div>*/
+      }
+      
       <div className='daily-wrap'>
-        <h3>5 day forecast</h3>
+      <div className="wide flex-row">
+        5 day forecast
+              { //weatherData 
+             // </div>
+              }
+            </div>
       </div>
   </div>
  
