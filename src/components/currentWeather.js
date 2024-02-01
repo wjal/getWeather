@@ -48,11 +48,13 @@ const CurrentWeather = (props) => {
                             src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}${dayOrNight}_${check1}_large@2x.png?raw=true`} 
                             alt={check1} 
                             onError={handleImageError}
+                            className="big-icon"
                         /> 
                         : 
                         <img 
                             src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}0_${check2}_large@2x.png?raw=true`} 
-                            alt="nope" 
+                            alt="nope"
+                            className="big-icon" 
                         /> 
                     }
                     </div >

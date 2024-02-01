@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+
 
 /*const getInitialLocation = async (ip) => {
   const url = 'https://community-neutrino-ip-info.p.rapidapi.com/ip-info';

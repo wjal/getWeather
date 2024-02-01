@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { weatherCodeDay } from "../weatherCodes";
+import { weatherCode, weatherCodeDay } from "../weatherCodes";
 
 const weekdays = [
     'Sunday',
@@ -16,6 +16,7 @@ const SevenDayForecast = (props) => {
     const [weather, setWeather] = useState('')
 
     
+    
 
     useEffect (() => {
 
@@ -30,7 +31,8 @@ const SevenDayForecast = (props) => {
         setWeekDay(weekdays[time.getDay()])
 
         const check1 = weatherCodeDay[`${props.weatherCodeMax}` + '0'][1];
-        setWeather(check1);
+        const conditions = weatherCode[`${props.weatherCodeMax}`][0];
+        setWeather(conditions);
     },[])
 
     return (
@@ -42,8 +44,8 @@ const SevenDayForecast = (props) => {
                 //onError={handleImageError}
             />
             <p>{weather}</p>
-            <p>High: {Math.round(props.max)} C</p>
-            <p>Low: {Math.round(props.min)} C</p>
+            <p>High: {Math.round(props.max)} °C</p>
+            <p>Low: {Math.round(props.min)} °C</p>
         </div>
     )            
 }
