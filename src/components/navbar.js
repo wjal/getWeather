@@ -8,16 +8,16 @@ import {
   latitudeAtom,
   locationTimeAtom,
   timeZoneAtom,
-  wetherDataAtom,}  from '../store.js'
+  weatherDataAtom,}  from '../store.js'
 import { timeZoneOptions, TIME_ZONE_URL } from "../api.js";
 
 const NavBar = () => {
 
-const [location, setLocation] = useAtom(locationAtom)
+    const [location, setLocation] = useAtom(locationAtom)
   const [locationTime, setLocationTime] = useAtom(locationTimeAtom);
   const [lat, setLat] = useAtom(latitudeAtom);
   const [lon, setLon] = useAtom(longitudeAtom);
-  const [weatherData, setWeatherData] = useAtom(wetherDataAtom);
+  const [weatherData, setWeatherData] = useAtom(weatherDataAtom);
   const [name, setName] = useAtom(nameAtom);
   const [country, setCountry] = useAtom(countryAtom)
   const [timeZone, setTimeZone] = useAtom(timeZoneAtom);
@@ -33,10 +33,8 @@ const [location, setLocation] = useAtom(locationAtom)
     try {
 	    const response = await fetch(`${TIME_ZONE_URL}/timezone?lon=${lon}&lat=${lat}&s=0&c=1}`, timeZoneOptions);
 	    const result = await response.json();
-	    console.log(result);
       const timeZoneTemp = result.Zones[0].TimezoneId
       setTimeZone(timeZoneTemp)
-      console.log('TIMEZONE', timeZoneTemp);
       const currentDate = new Date().toLocaleString("en-US", {timeZone: timeZoneTemp})
       const stamp = Date.parse(currentDate)
       setLocationTime(stamp)
@@ -54,7 +52,6 @@ const [location, setLocation] = useAtom(locationAtom)
       // Assuming you want to store the weather data in state
       setWeatherData(data);
       // Handle the weather data as needed
-      console.log(data);
     } catch (error) {
       console.error('Error fetching weather data:', error);
     }
@@ -75,8 +72,10 @@ const [location, setLocation] = useAtom(locationAtom)
 
     return(
         <div className="navbar">
-            <h1 >getWeather</h1>
-            <div className='search-container'>
+            <div className="navbar-content logo">
+            <img src='detailIcons/getWeatherLogo2.png' width={`${416.56/1.95}px`} height={`${166.54/1.95}px`} alt="getWEASTHER"/>
+            </div>
+            <div className="search-container">
               <Search onSearchChange={handleOnSearchChange}/>
             </div>
         </div>

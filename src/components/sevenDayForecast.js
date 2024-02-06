@@ -22,7 +22,6 @@ const SevenDayForecast = (props) => {
 
         //console.log(props.time)
         const timeTemp = new Date(props.time).toLocaleString("en-US", {timeZone: props.timeZone})
-        console.log('Time', timeTemp)
         const timeStamp = Date.parse(timeTemp)
         const time = new Date(timeStamp)
         
@@ -36,7 +35,7 @@ const SevenDayForecast = (props) => {
     },[])
 
     return (
-        <div className="weekly-content">
+        <div className="weekly-content" key={props.index}>
             <p>{weekday}</p>
             <img 
                 src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.weatherCodeMax}0_${weatherCodeDay[props.weatherCodeMax + '0'][1]}_large.png?raw=true`} 

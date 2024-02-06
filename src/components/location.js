@@ -55,6 +55,7 @@ const Location = (props) => {
     return (
     
         <div className="daily-content location-container" >
+             <h3>Local Time: {currentTime}</h3>
             {
             /*<div class="flex-row location">
                 <div className="location-detail flex-row">

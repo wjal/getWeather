@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useAtom } from 'jotai'
+import { nameAtom, countryAtom } from '../store.js'
 import  { weatherCodeDay, weatherCodeFullDay, weatherCodeNight, weatherCode} from "../weatherCodes";
 import { timeZoneOptions, TIME_ZONE_URL } from "../api";
 
@@ -6,6 +8,8 @@ import { timeZoneOptions, TIME_ZONE_URL } from "../api";
 const CurrentWeather = (props) => {
                 
     const [imageLoaded, setImageLoaded] = useState(true);
+    const [name, setName] = useAtom(nameAtom);
+    const [country, setCountry] = useAtom(countryAtom)
 
     
     const sunsetTemp = new Date(props.sunset).toLocaleString("en-US", {timeZone: props.timeZone})
@@ -39,7 +43,8 @@ const CurrentWeather = (props) => {
 
     return (
         
-                
+        <div className="column right-column">
+        <h2 className="title daily-content">{name}, {country}</h2>  
         <div className="daily-content wide">
             <div className="flex-row big-icon-container">
             <div className="flex-row temperature"><h2>{Math.round(props.temperature)}</h2><div className="flex-column"><span className="degrees">°C</span><span></span></div></div>
@@ -61,7 +66,7 @@ const CurrentWeather = (props) => {
                     <div className="conditions">
                     <p >{conditions}</p>
                     </div>
-            
+                    </div>
         </ div> 
     )
                  
