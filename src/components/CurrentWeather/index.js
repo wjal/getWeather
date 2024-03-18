@@ -46,7 +46,7 @@ const CurrentWeather = (props) => {
         <div className="column right-column">
         <div className="daily-content wide">
         <h2 className="title">{name}, {country}</h2>  
-
+        
             <div className="flex-row big-icon-container">
             <div className="flex-row temperature">
                 <h2 className="temp">{Math.round(props.temperature)}</h2>

@@ -55,16 +55,10 @@ const Location = (props) => {
     return (
     
         <div className="location-container" >
-             <h3>Local Time: {currentTime}</h3>
-            {
-            /*<div class="flex-row location">
-                <div className="location-detail flex-row">
-                    <LocationTime title="Local Time" icon="detailIcons/on-time.png" detail={currentTime} />
-                </div>
-            </div>*/
-}
-           { //<div class="flex-row location">   
-           }    
+            <div style={{height: '100px', display: 'flex', flexDirection: 'row', alignContent: 'center'}}>
+                Local Time: {currentTime}
+             </div>
+             
            <div className="location-row-container">
             <div className="location-row-today">
                 <Detail title="Sunrise" icon="detailIcons/sunrise.png" detail={sunrise} />
@@ -75,15 +69,7 @@ const Location = (props) => {
                 <Detail title="Latitude" icon="detailIcons/latitude.png" detail={latitude} />
             </div> 
             </div>                       
-                { //   </div>
-           } 
-            {/*<div class="flex-row location"> 
-                <div className="location-detail flex-row">
-                    <LocationDetail title="Latitude" detail={Math.round(latitude * 100) / 100}/>
-                    <LocationDetail title="Longitude" detail={ Math.round(longitude * 100) / 100}/>
-                </div>                
-            </div>*/
-            }
+              
         </div>
     
     )            

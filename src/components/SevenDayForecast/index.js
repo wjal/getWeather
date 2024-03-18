@@ -108,7 +108,7 @@ const settings = {
     'Sunday',
     'Monday',
     'Tuesday',
-    'Wedday',
+    'Wednesday',
     'Thursday',
     'Friday',
     'Satday',
