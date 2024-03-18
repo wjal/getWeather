@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import LocationDetail from "./locationDetail";
-import LocationTime from "./locationTime";
-import Detail from "./detail";
-
+import LocationDetail from "../LocationDetail";
+import LocationTime from "../LocationTime";
+import Detail from "../Detail";
+import './Location.css'
 
 const Location = (props) => {
                 
@@ -54,7 +54,7 @@ const Location = (props) => {
 
     return (
     
-        <div className="daily-content location-container" >
+        <div className="location-container" >
              <h3>Local Time: {currentTime}</h3>
             {
             /*<div class="flex-row location">
@@ -65,14 +65,16 @@ const Location = (props) => {
 }
            { //<div class="flex-row location">   
            }    
-           <div className="location-row-today">
-                    <Detail title="Sunrise" icon="detailIcons/sunrise.png" detail={sunrise} />
-                    <Detail title="Sunset" icon="detailIcons/sunset-.png" detail={sunset} />
-                </div>  
-                <div className="location-row-today">
-                    <Detail title="Longitude" icon="detailIcons/longitude.png" detail={longitude} />
-                    <Detail title="Latitude" icon="detailIcons/latitude.png" detail={latitude} />
-                </div>                        
+           <div className="location-row-container">
+            <div className="location-row-today">
+                <Detail title="Sunrise" icon="detailIcons/sunrise.png" detail={sunrise} />
+                <Detail title="Sunset" icon="detailIcons/sunset-.png" detail={sunset} />
+            </div>  
+            <div className="location-row-today">
+                <Detail title="Longitude" icon="detailIcons/longitude.png" detail={longitude} />
+                <Detail title="Latitude" icon="detailIcons/latitude.png" detail={latitude} />
+            </div> 
+            </div>                       
                 { //   </div>
            } 
             {/*<div class="flex-row location"> 

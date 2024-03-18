@@ -1,4 +1,4 @@
-import Search from "./search";
+import Search from "../Search/index.js";
 import { useAtom } from 'jotai';
 import {
   locationAtom, 
@@ -8,12 +8,13 @@ import {
   latitudeAtom,
   locationTimeAtom,
   timeZoneAtom,
-  weatherDataAtom,}  from '../store.js'
-import { timeZoneOptions, TIME_ZONE_URL } from "../api.js";
+  weatherDataAtom,}  from '../../store.js'
+import { timeZoneOptions, TIME_ZONE_URL } from "../../api.js";
+import './Navbar.css'
 
 const NavBar = () => {
 
-    const [location, setLocation] = useAtom(locationAtom)
+  const [location, setLocation] = useAtom(locationAtom)
   const [locationTime, setLocationTime] = useAtom(locationTimeAtom);
   const [lat, setLat] = useAtom(latitudeAtom);
   const [lon, setLon] = useAtom(longitudeAtom);
@@ -73,7 +74,7 @@ const NavBar = () => {
     return(
         <div className="navbar">
             <div className="navbar-content logo">
-            <img src='detailIcons/getWeatherLogo2.png' width={`${416.56/1.95}px`} height={`${166.54/1.95}px`} alt="getWEASTHER"/>
+            <img src='detailIcons/getWeatherLogo2.png' className="logo-img" alt="getWEATHER"/>
             </div>
             <div className="search-container">
               <Search onSearchChange={handleOnSearchChange}/>

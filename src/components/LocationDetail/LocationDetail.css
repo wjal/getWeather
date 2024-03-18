@@ -1,0 +1,29 @@
+
+
+.location-detail-content{
+    position: relative;
+    text-shadow: 3px;
+    font-size: 1.35em;}
+
+
+.location-detail-icon {
+    text-shadow: 3px;
+    font-size: 1.35em;
+    height: 50px;
+    width: 50px;
+    position:relative;
+    opacity: .85;
+    filter: drop-shadow(5px 5px 1500px rgba(0, 0, 0, 0.5));
+  
+  }
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    align-items: center;
+    justify-content: center; 
+    filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.5));
+  }
+
+ 

@@ -1,0 +1,125 @@
+.column{
+    height:50%;
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.column-left {
+    height:50%;
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 90px;
+}
+
+.title{
+    height: 25%;
+    width: 100%;
+    position: relative;
+    text-shadow: 3px;
+    font-size: 2.4em;
+    padding-top: 40px;
+} 
+.daily-content {
+    position: relative;
+    text-shadow: 3px;
+    font-size: 1.35em;
+}
+
+ 
+.wide{
+    width: 100%;
+}
+
+.flex-row {
+    display: flex;
+    font: 1em sans-serif;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .big-icon-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    font-size: 2em;
+    height: 20%;
+  }
+
+.temperature {
+    height: 100%;
+    font-size: 2em;
+  
+}
+
+.big-icon{
+    
+    filter: drop-shadow(1px 1px 15px rgba(0, 0, 0, 0.5));
+}
+
+.conditions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+  }
+
+.degrees {
+  font-size: .5em;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+@media only screen and (max-width: 600px) {
+
+    .title{
+        height: 15%;
+        width: 88%;
+        margin: 0px;
+        font-size: 1.5em;
+        text-align: center;
+    } 
+    .column {
+        height: 100%;
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .big-icon{
+        width: 100px;
+        height: 100px;
+        filter: drop-shadow(1px 1px 15px rgba(0, 0, 0, 0.5));
+    }
+
+    .flex-row {
+        display: flex;
+        font: 1em sans-serif;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        height: 100%;
+      }
+      .temperature{
+        font-size: 2.7em;
+        display: flex;
+        font: 1em sans-serif;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        height: 100%;
+      }
+}

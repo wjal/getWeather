@@ -1,0 +1,29 @@
+.bottom-row-today {
+    border: 10px;
+    width: 90%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+.bar {
+    background: white;
+    height: 90%;
+    width: 1px;
+    border-radius: 50px;
+    opacity: 18%;
+  }
+
+  @media only screen and (max-width: 600px){
+
+    .bottom-row-today {
+        width: 90%;
+        height: 15%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: wrap;
+      }
+
+  }

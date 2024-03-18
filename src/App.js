@@ -1,21 +1,21 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import SevenDayForecast from './components/sevenDayForecast';
-import TodayForecast from './components/todayForecast.js'
-import Location from './components/location.js';
-import Search from './components/search.js';
-import Detail from './components/detail.js';
-import CurrentWeather from './components/currentWeather.js';
+import SevenDayForecast from './components/SevenDayForecast/index.js';
+import TodayForecast from './components/TodayForecast/index.js'
+import Location from './components/Location/index.js';
+import Search from './components/Search/index.js';
+import Detail from './components/Detail/index.js';
+import CurrentWeather from './components/CurrentWeather/index.js';
 import { timeZoneOptions, TIME_ZONE_URL } from './api.js';
 import Slider from 'react-slick';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import NavBar from './components/navbar.js';
-import BottomRow from './components/BottomRow.js'
-import TopRow from './components/TopRow.js'
+import NavBar from './components/Navbar/index.js';
+import BottomRow from './components/BottomRow/index.js'
+import TopRow from './components/TopRow/index.js'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Hourly from './components/hourly.js'
+import Hourly from './components/Hourly/index.js'
 import getUserCoordinatesimport, { getUserCoordinates } from './store.js'
 import { useAtom } from 'jotai';
 import {
@@ -27,7 +27,7 @@ import {
   locationTimeAtom,
   timeZoneAtom,
   weatherDataAtom,}  from './store.js'
-
+import Daily from './Daily/index.js'
 
 
 const App = () => {
@@ -40,6 +40,47 @@ const App = () => {
   const [name, setName] = useAtom(nameAtom);
   const [country, setCountry] = useAtom(countryAtom)
   const [timeZone, setTimeZone] = useAtom(timeZoneAtom);
+
+/*const getInitialLocation = async (ip) => {
+  const url = 'https://community-neutrino-ip-info.p.rapidapi.com/ip-info';
+const options = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/x-www-form-urlencoded',
+		'X-RapidAPI-Key': 'aad022bdfbmshd295cbe9b7967dcp12c548jsnba21205f13a5',
+		'X-RapidAPI-Host': 'community-neutrino-ip-info.p.rapidapi.com'
+	},
+	body: new URLSearchParams({
+		'reverse-lookup': 'checked',
+		ip: `${ip}`
+	})
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.json();
+	console.log(result);
+  return result;
+} catch (error) {
+	console.error(error);
+}
+
+  
+};
+
+
+const response = await fetch('https://geolocation-db.com/json/');
+const data = await response.json();
+const ip = data.IPv4;
+console.log(ip)
+
+const location = await getInitialLocation(ip);
+console.log(location)
+
+*/
+
+
+
 
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
@@ -80,7 +121,9 @@ const handleCoords =  async () => {
   await getUserCoordinates(setLat, setLon);
   console.log(`here`, lat, lon)
 }
+const handleInitialWeather = () => {
 
+}
   useEffect(() => {
    handleCoords()
   }, [])
@@ -90,11 +133,10 @@ const handleCoords =  async () => {
     
     <div className="App">
 
+    <NavBar/>
+      
 
-      <NavBar/>
-
-
-
+     
       {!weatherData && 
       <div className='no-location-wrapper'>
         <div className='no-location-wrap'>
@@ -105,25 +147,26 @@ const handleCoords =  async () => {
 
       { weatherData &&
       <>
-        <div className='daily-wrap'>
-        
-          <TopRow />
+      <div className='daily-wrap'>
+         <TopRow /> 
+          
           
 
           <BottomRow weatherData={weatherData}/>  
           
         </div>
         
-
+        
 
 
 
         <div className='weekly-wrap'>
           <h3 className='detail-content'>Hourly forecast</h3>
-            <div className="flex-row wide detail-content">
-                <Hourly  weatherData={weatherData}/>
-            </div>
-        </div>
+          <div className="hourly">
+            <Hourly  weatherData={weatherData}/>
+          </div> 
+        </div> 
+        
 
 
 
@@ -131,9 +174,8 @@ const handleCoords =  async () => {
 
         <div className='weekly-wrap'>
           <h3 className='detail-content'>This Week</h3>
-            <div className="flex-row wide detail-content">
-            { weatherData.timelines.daily.map((day, index) => <SevenDayForecast key={index} time={day.time} max={day.values.temperatureMax} min={day.values.temperatureMin} weatherCodeMax={day.values.weatherCodeMax} />)
-}
+            <div className="hourly">
+            <Daily  weatherData={weatherData}/>
             </div>
         </div>
         </>

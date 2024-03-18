@@ -1,5 +1,5 @@
-import CurrentWeather from './currentWeather.js'
-import Location from './location.js'
+import CurrentWeather from '../CurrentWeather/index.js'
+import Location from '../Location/index.js'
 import { useAtom } from 'jotai'
 import {
     locationAtom, 
@@ -9,7 +9,8 @@ import {
     latitudeAtom,
     locationTimeAtom,
     timeZoneAtom,
-    weatherDataAtom,}  from '../store.js'
+    weatherDataAtom,}  from '../../store.js'
+import './TopRow.css'
 
 const TopRow = () => {
 
@@ -25,8 +26,9 @@ const TopRow = () => {
     return (
     
         <div className='top-row-today'>
-            
-                  <CurrentWeather  
+            <div className='column-n'>
+
+            <CurrentWeather  
                     code={weatherData.timelines.minutely[0].values.weatherCode} 
                     max={weatherData.timelines.minutely[0].values.temperature} 
                     currentTime={locationTime} 
@@ -37,11 +39,12 @@ const TopRow = () => {
                     timeZone={timeZone}
                     temperature={weatherData.timelines.minutely[0].values.temperature}
                   />
+            </div>
+                  
           
 
-          <div className="bar"></div>
 
-          <div className="column right-column">
+          <div className="column column-n">
               <Location 
                 currentTime={locationTime} 
                 sunrise={weatherData.timelines.daily[0].values.sunriseTime} 

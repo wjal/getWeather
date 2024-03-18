@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import './Detail.css'
 const Detail = (props) => {
 
     const [detail, setDetail] = useState();
@@ -26,9 +26,9 @@ const Detail = (props) => {
 
     return (
         <div className="detail">
-                    <h3 className="detail-content detail-title">{props.title}</h3>
-                    <h4 className="detail-content detail-value">{detail} {props.character}</h4>
+                    <h3 className="detail-title">{props.title}</h3>
                     <img className="detail-icon" src={props.icon} alt="icon"/>
+                    <h4 className="detail-value">{detail} {props.character}</h4>
         </div>
     )
 }

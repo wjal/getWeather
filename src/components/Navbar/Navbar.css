@@ -1,0 +1,99 @@
+
+
+.navbar {
+    position: sticky; /* Set the navbar to fixed position */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    overflow: visible;    
+    z-index: 9997;
+  }
+  
+  .navbar:before {
+    position: sticky; /* Set the navbar to fixed position */
+    width: 100%;
+    height: 105px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    opacity: .99;
+    content: ' ';
+    position: fixed;
+    left: 0;
+    top: 0;
+    opacity: .99;
+    background-position: 50% 0;
+    background-size: cover;
+    z-index: 9998;
+    opacity: 0.88;
+    background-color: rgb(35, 106, 229);
+    box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.5), 0 12px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+.navbar-content {
+    position: relative;
+    text-shadow: 3px;
+    font-size: 1.35em;
+    z-index: 9999;
+  }
+
+
+.logo{
+    margin-left: 42px;
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    filter: drop-shadow(1px 1px 18px rgba(0, 0, 0, 0.5));
+  }
+  .logo-img{
+    width:  170.9px;
+    height: 68.32px;
+}
+
+  .search-container {
+    width: 30%;
+    margin: 20 auto;
+    height: 19%;
+    color: black;
+    margin-right: 30px;
+    z-index: 9999;
+    position: relative;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+  }
+
+  @media only screen and (max-width: 600px){
+    .navbar{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 65px;
+    }
+    .logo-img{
+        width:  85.45px;
+        height: 34.162px;
+    }
+    .search-container {
+        width: 70%;
+        margin: 0;
+        height: 19%;
+        color: black;
+        margin-right: 0px;
+        z-index: 9999;
+        position: relative;
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+      }
+      .logo{
+        margin-left: 0px;
+        margin-top: 0px;
+        display: flex;
+        align-items: center;
+        filter: drop-shadow(1px 1px 18px rgba(0, 0, 0, 0.5));
+      }
+    
+  }

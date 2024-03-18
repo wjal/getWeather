@@ -1,8 +1,8 @@
 import Slider from "react-slick";
-import SevenDayForecast from "./sevenDayForecast";
+import SevenDayForecast from "../SevenDayForecast/index.js";
 import { useState, useEffect } from "react";
-import { weatherCode, weatherCodeDay, weatherCodeNight } from "../weatherCodes";
-import { TIME_ZONE_URL, timeZoneOptions } from "../api.js";
+import { weatherCode, weatherCodeDay, weatherCodeNight } from "../../weatherCodes.js";
+import { TIME_ZONE_URL, timeZoneOptions } from "../../api.js";
 import {useAtom} from 'jotai';
 import {
   locationAtom, 
@@ -12,8 +12,8 @@ import {
   latitudeAtom,
   locationTimeAtom,
   timeZoneAtom,
-  weatherDataAtom,}  from '../store.js'
-
+  weatherDataAtom,}  from '../../store.js'
+import './Hour.css'
 
 const weekdays = [
   'Sunday',
@@ -208,23 +208,23 @@ const handleGetLocationTime = async (lon, lat) => {
         },[])
     return (
       <div key={props.key}  className="slide">
-       
-    
-        <p>{weekdays[todayDate.getDay()]}</p>
-        <p>{ todayDate.getHours() === 0 ? 12 : todayDate.getHours() % 12} {todayDate.getHours() > 11 ? 'pm' : 'am'}</p>
+       <p>{weekdays[todayDate.getDay()]}</p>
+        <p>{ todayDate.getHours() === 0 || todayDate.getHours() === 12 ? 12 : todayDate.getHours() % 12} {todayDate.getHours() > 11 ? 'pm' : 'am'}</p>
         
-       { conditions !== 'Cloudy' ? <img 
-    src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.hourData.values.weatherCode}${dayNight}_${check1}_large.png?raw=true`} 
-    alt={check1} 
-    onError={handleImageError}
-    className="big-icon"
-/> : 
-    <img src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.hourData.values.weatherCode}${0}_cloudy_large.png?raw=true`} 
-    alt={check1} 
-    onError={handleImageError}
-    className="big-icon" />
-    }
-       <p>{conditions}</p>
+       { conditions !== 'Cloudy' ?
+
+        <img 
+          src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.hourData.values.weatherCode}${dayNight}_${check1}_large.png?raw=true`} 
+          alt={check1} 
+          onError={handleImageError}
+          className="big-icon"
+        /> : 
+        <img src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.hourData.values.weatherCode}${0}_cloudy_large.png?raw=true`} 
+          alt={check1} 
+          onError={handleImageError}
+          className="big-icon" />
+        }
+        <p>{conditions}</p>
         <p>{Math.round(props.hourData.values.temperature)} °C</p>
       </div>
        

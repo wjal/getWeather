@@ -1,4 +1,5 @@
-import Detail from "./detail"
+import Detail from "../Detail"
+import './BottomRow.css'
 
 const BottomRow = ({weatherData}) => {
 

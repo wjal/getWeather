@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAtom } from 'jotai'
-import { nameAtom, countryAtom } from '../store.js'
-import  { weatherCodeDay, weatherCodeFullDay, weatherCodeNight, weatherCode} from "../weatherCodes";
-import { timeZoneOptions, TIME_ZONE_URL } from "../api";
-
+import { nameAtom, countryAtom } from '../../store.js'
+import  { weatherCodeDay, weatherCodeFullDay, weatherCodeNight, weatherCode} from "../../weatherCodes.js";
+import { timeZoneOptions, TIME_ZONE_URL } from "../../api.js";
+import './CurrentWeather.css'
 
 const CurrentWeather = (props) => {
                 
@@ -44,17 +44,24 @@ const CurrentWeather = (props) => {
     return (
         
         <div className="column right-column">
-        <h2 className="title daily-content">{name}, {country}</h2>  
         <div className="daily-content wide">
+        <h2 className="title">{name}, {country}</h2>  
+
             <div className="flex-row big-icon-container">
-            <div className="flex-row temperature"><h2>{Math.round(props.temperature)}</h2><div className="flex-column"><span className="degrees">°C</span><span></span></div></div>
+            <div className="flex-row temperature">
+                <h2 className="temp">{Math.round(props.temperature)}</h2>
+                <div className="flex-column">
+                    <span className="degrees">°C</span>
+                    </div></div>
                     { imageLoaded ? 
+                    
                         <img 
                             src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}${dayOrNight}_${check1}_large@2x.png?raw=true`} 
                             alt={check1} 
                             onError={handleImageError}
                             className="big-icon"
                         /> 
+                        
                         : 
                         <img 
                             src={`https://github.com/Tomorrow-IO-API/tomorrow-weather-codes/blob/master/V2_icons/large/png/${props.code}0_${check2}_large@2x.png?raw=true`} 
@@ -62,6 +69,7 @@ const CurrentWeather = (props) => {
                             className="big-icon" 
                         /> 
                     }
+                    
                     </div >
                     <div className="conditions">
                     <p >{conditions}</p>

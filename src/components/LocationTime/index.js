@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './LocationTime.css'
 
 const LocationTime = (props) => {
     return (
