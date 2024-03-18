@@ -115,6 +115,7 @@ const settings = {
 ]
 
 
+
 const SevenDayForecast = (props) => {
                 
     const [weekday, setWeekDay] = useState(null);
